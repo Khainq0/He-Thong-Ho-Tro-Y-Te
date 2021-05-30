@@ -43,7 +43,7 @@
                                 <td>@(i+1)</td>
                                 <td>@item.TenKH</td>
                                 <td>@item.GioiTinh</td>
-                                <td>@item.NgaySinh</td>
+                                <td>@Convert.ToDateTime(item.NgaySinh).ToString("dd/MM/yyyy")</td>
                                 <td>@item.DiaChi</td>
                                 <td>@item.ThuDienTu</td>
                                 <td>@item.SoDienThoai</td>
