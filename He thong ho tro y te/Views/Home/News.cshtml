@@ -6,9 +6,9 @@
 @using PagedList.Mvc
 
 
-   
-    
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
 <body>
     <div>
         <section class="slider_section">
@@ -33,7 +33,7 @@
                                             </p>
                                             <input class="Vegetable_fom" placeholder="Vegetable" type="text" name=" Vegetable">
                                             <button class="Search_btn">Search</button>
-                                           
+
                                             <a href="Javascript:void(0)">Đọc thêm</a>
                                         </div>
                                     </div>
@@ -106,7 +106,7 @@
                 </div>
             </div>
         </section>
-        
+
         <div class="container">
             <div class="row" style="border:double;">
                 <div class="col-md-8 " style="margin-left:100px;">
@@ -116,8 +116,8 @@
                     <div class="content-panel-body article-list">
 
                         @foreach (var item in Model)
-                        {   
-                            <div class="item row">
+                        {
+                            <div class="item row" style="margin-bottom:20px">
                                 <div class="item-header col-md-6" style="border:outset">
                                     <a href="/Home/ChiTietTinTuc/@item.ID">
 
@@ -140,18 +140,44 @@
 
 
                     </div>
-                    <div class="col-sm-7">
-
-                         @Html.PagedListPager(Model, PageNum => Url.Action("News", new { PageNum, @searchString = @ViewBag.SearchString }))
-                     </div>
                     
+                        <div class="pagination">
+                            
+                                    @Html.PagedListPager(Model, PageNum => Url.Action("News", new { PageNum, @searchString = @ViewBag.SearchString }))
+                              
+                        </div>
+                   
+
 
 
                 </div>
             </div>
         </div>
-          
-        </div>
-</body>
 
+    </div>
+</body>
+<style>
+    .pagination {
+        display: inline;
+    }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+
+            .pagination a.active {
+                background-color: #4CAF50;
+                color: white;
+                border-radius: 5px;
+            }
+
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+                border-radius: 5px;
+                background-color: #4CAF50;
+            }
+</style>
 

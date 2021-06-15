@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="~/Content/css/responsive.css">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="~/Content/css/jquery.mCustomScrollbar.min.css">
-
+    
 
 </head>
 <!-- body -->
@@ -63,20 +63,33 @@
                                             <li> <a href="~/Shop/Index">Quầy thuốc </a> </li>
                                             <li> <a href="~/Home/HeChuyenGia">Chẩn đoán </a> </li>
                                             <li> <a href="~/Home/Contact">Liên hệ</a> </li>
+                                            <li><a href="~/Shop/GioHang">
+                                                    <div class="row">
+                                                <div class="" style="padding-bottom:15px">
+                                                        <img class="cart-icon" src="~/Content/images/online-shopping-cart.png" style="padding-top:15px">
+                                                        <span class="Userstyle__ItemCartQty-sc-6e6am-4 jJyMq">@Html.Action("ViewCount", "Shop")</span>
+                                                    </div>
+                                                <span class="" style="padding-top:15px">Giỏ Hàng</span>
+                                                    </div>
+                                                </a>    
+                                            
+                                            </li>
                                             <li>
                                                 <img src="~/Content/icon/icon_b.png" alt="#" />
                                                 <ul id="menu" @*class="dropdown-menu"*@ style="right:0;">
-
+                                                    
                                                     @if (Session["username"] == null)
                                                     {
                                                         <li>
 
-                                                            <a href="~/Admin/Admin/Login">
+                                                            <a href="~/Admin/Admin/Login" style="text-align:left">
+                                                                <img src="~/Content/images/login.png">
                                                                 Đăng nhập
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a href="~/Admin/Admin/Register">Đăng ký </a>
+                                                            <a href="~/Admin/Admin/Register" style="text-align:left">
+                                                                <img src="~/Content/images/login.png">Đăng ký </a>
                                                         </li>
 
 
@@ -91,17 +104,17 @@
                                                     <li>
                                                         @if (Session["groupid"].ToString() == "ADMIN")
                                                         {
-                                                            <a href="~/Admin/Admin/Index">Quản trị </a>
+                                                            <a href="~/Admin/Admin/Index" style="text-align:left">Quản trị </a>
                                                         }
                                                         else if (Session["groupid"].ToString() == "DOCTOR")
                                                         {
-                                                            <a href="~/Doctor/User/Index">Quản trị </a>
+                                                            <a href="~/Doctor/User/Index" style="text-align:left">Quản trị </a>
                                                         }
-                                                        else { <a href="~/Home/Index">Quản trị </a>}
+                                                        else { <a href="~/Home/Index" style="text-align:left">Quản trị </a>}
 
                                                     </li>
                                                         <li>
-                                                            <a href="~/Admin/Admin/Logout">Đăng xuất </a>
+                                                            <a href="~/Admin/Admin/Logout" style="text-align:left">Đăng xuất </a>
                                                         </li>
                                                     }
 
@@ -119,7 +132,7 @@
     </header>
     @*end header inner
         end header*@
-    @RenderBody();
+    @RenderBody()
     @RenderSection("scripts", required: false)
     @*contact
         end contact
