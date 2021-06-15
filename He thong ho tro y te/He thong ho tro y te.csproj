@@ -2771,7 +2771,6 @@
     <Content Include="Content\images\53f66e855399628bd723328e15f07813.jpg" />
     <Content Include="Content\images\acr.jpg" />
     <Content Include="Content\images\anh-2-healthapps-090934-081019-88.jpg" />
-    <Content Include="Content\images\b80ad73e5e84aeb71c08e5d8d438eaa1.png" />
     <Content Include="Content\images\banner2.png" />
     <Content Include="Content\images\bao_hoat_dich.png" />
     <Content Include="Content\images\bao_mon_xuong.jpg" />
@@ -2785,12 +2784,9 @@
     <Content Include="Content\images\img2.png" />
     <Content Include="Content\images\kl_Gout.jpg" />
     <Content Include="Content\images\loading.gif" />
-    <Content Include="Content\images\login.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\logo2.png" />
-    <Content Include="Content\images\online-shopping-cart.png" />
     <Content Include="Content\images\qqq.png" />
-    <Content Include="Content\images\shopping-cart.jpg" />
     <Content Include="Content\images\thuocbac.jpg" />
     <Content Include="Content\images\tes.jpg" />
     <Content Include="Content\images\test.png" />
@@ -3376,12 +3372,6 @@
     <Content Include="Views\HeChuyenGia\NguyCo.cshtml" />
     <Content Include="Views\HeChuyenGia\NguyCoCao.cshtml" />
     <Content Include="Views\Home\ChiTietTinTuc.cshtml" />
-    <Content Include="Views\Shop\ViewCount.cshtml" />
-    <Content Include="Views\Shop\GioHang.cshtml" />
-    <Content Include="Views\Shop\CheckOut.cshtml" />
-    <Content Include="Views\Shop\TotalMoney.cshtml" />
-    <Content Include="Views\Shop\GioHangRong.cshtml" />
-    <Content Include="Views\Shop\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -20,7 +20,7 @@ namespace He_thong_ho_tro_y_te.Models.DAO
         }
 
         public void addHangHoa(HangHoaBan tmp)
-        {   
+        {
             bool co = false;
             foreach (HangHoaBan i in listHangHoa)
                 if (i.id == tmp.id)
@@ -45,13 +45,9 @@ namespace He_thong_ho_tro_y_te.Models.DAO
         }
         public void deleteHangHoa(int id)
         {
-            foreach (HangHoaBan i in listHangHoa.ToList())
+            foreach (HangHoaBan i in listHangHoa)
                 if (i.id == id)
-                {
                     listHangHoa.Remove(i);
-                }
-                    
-
         }
 
         public int getSL()
@@ -62,17 +58,35 @@ namespace He_thong_ho_tro_y_te.Models.DAO
             return sll;
 
         }
-        public double getTongTien()
+        public int getTongTien()
         {
-            double tong = 0;
+            int tong = 0;
             foreach (HangHoaBan i in listHangHoa)
                 tong += i.sl * i.price;
             return tong;
         }
 
-        public List<HangHoaBan> returnTable()
+        public DataTable returnTable()
         {
-            return listHangHoa;
+
+            DataTable tbl = new DataTable();
+            tbl.Columns.Add("id");
+            tbl.Columns.Add("name");
+            tbl.Columns.Add("price");
+            tbl.Columns.Add("sl");
+            tbl.Columns.Add("thanhtien");
+
+            foreach (HangHoaBan i in listHangHoa)
+            {
+                DataRow dr = tbl.NewRow();
+                dr["id"] = i.id;
+                dr["name"] = "abc";
+                dr["price"] = 100;
+                dr["sl"] = i.sl;
+                dr["thanhtien"] = (i.sl) * 100;
+                tbl.Rows.Add(dr);
+            }
+            return tbl;
         }
     }
 }
