@@ -3010,6 +3010,10 @@
     <Content Include="Views\HeChuyenGia\KhongBiGout.cshtml" />
     <Content Include="Views\HeChuyenGia\NguyCo.cshtml" />
     <Content Include="Views\HeChuyenGia\NguyCoCao.cshtml" />
+<<<<<<< HEAD
+=======
+    <Content Include="Views\Home\ChiTietTinTuc.cshtml" />
+>>>>>>> parent of 0f5438b (Hieu up gio hang)
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
