@@ -21,25 +21,9 @@ namespace He_thong_ho_tro_y_te.Controllers
 
             return View();
         }
-        public ActionResult News(string searchString, int PageNum = 1, int PageSize = 5)
+        public ActionResult News()
         {
-            var dao = new NewsDAO();
-            var model = dao.ListNewsPage(searchString, PageNum, PageSize);
-
-
-            ViewBag.SearchString = searchString;
-
-
-
-            return View(model);
-        }
-        public ActionResult ChiTietTinTuc(int id)
-        {
-
-            News product = new NewsDAO().Detail(id);
-
-            return View(product);
-
+        return View();
         }
         public ActionResult Shop()
         {
