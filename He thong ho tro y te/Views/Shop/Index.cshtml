@@ -7,34 +7,45 @@
 @using PagedList.Mvc
 
 
-
 <body>
-    <div style="margin-bottom:800px;margin-top:100px; margin-left:100px;margin-right:100px;">
+    <div class="" style="margin-bottom:800px;margin-top:100px;margin-left:100px;margin-right:100px">
         @ViewBag.count
         @foreach (var item in Model)
         {
 
-            <div class="cart-grid" id="cart-1">
-                <div class="img">
-                    <img src="~/Asset/Photo/@item.Image" alt="img">
+            <div class="cart-grid" id="cart-1" style="margin-bottom:10px">
+                <div class="img" >
+                    <a href="~/Shop/Detail/@item.Id">
+
+                        <img src="~/Asset/Photo/@item.Image" alt="img">
+                    </a>
                 </div>
                 <ul class="info">
-                    <li>$60.00</li>
+                    <li>@item.Name</li>
                     <li class="right-text">@item.Price</li>
                 </ul>
-                <div class="snipcart-details ">
-                    <form action="#" method="post">
-                        <input type="hidden" name="cmd" value="_cart">
-                        <input type="hidden" name="add" value="1">
-                        <input type="hidden" name="w3l_item" value="Striped Top ">
-                        <input type="hidden" name="amount" value="25.00">
-                        <input type="hidden" name="item_name" value="Product #001" />
-                        <button type="submit" class="button w3l-cart" data-id="cart-1">add to cart</button>
+                <a href="/Shop/Add/@item.Id" class=" button w3l-cart">Thêm vào giỏ hàng</a>
+                @*<div class="snipcart-details ">
+                        <form action="#" method="post">
+                            <input type="hidden" name="cmd" value="_cart">
+                            <input type="hidden" name="add" value="1">
+                            <input type="hidden" name="w3l_item" value="Striped Top ">
+                            <input type="hidden" name="amount" value="25.00">
+                            <input type="hidden" name="item_name" value="Product #001" />
+                            <button type="submit" class="button w3l-cart" data-id="cart-1">Thêm vào giỏ hàng</button>
 
-                    </form>
-                </div>
+                        </form>
+                    </div>*@
+
             </div>
         }
+        <div class="row">
+            <div class="pagination col-sm-12">
+
+                @Html.PagedListPager(Model, PageNum => Url.Action("Index", new { PageNum, @searchString = @ViewBag.SearchString }))
+
+            </div>
+        </div>
     </div>
 
 </body>
@@ -63,5 +74,29 @@
         -moz-transition: all 0.35s ease-in-out;
         transition: all 0.35s ease-in-out;
     }
+
+    .pagination {
+        padding: 35px 0;
+        text-align: right;
+        display: inline;
+    }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+
+            .pagination a.active {
+                background-color: #4CAF50;
+                color: white;
+                border-radius: 5px;
+            }
+
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+                border-radius: 5px;
+            }
 </style>
 
