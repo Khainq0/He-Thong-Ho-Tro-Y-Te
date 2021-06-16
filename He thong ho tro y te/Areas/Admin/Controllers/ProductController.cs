@@ -161,6 +161,7 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
         //    return View(listLinks);
         //}
         public ActionResult Delete(int id)
+        {
             ProductDAO dao = new ProductDAO();
             dao.Delete(id);
             return Redirect("~/Admin/Product/Index");
