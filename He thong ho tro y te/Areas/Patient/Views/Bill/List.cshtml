@@ -1,0 +1,89 @@
+﻿
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLTELayout.cshtml";
+}
+@model PagedList.IPagedList<He_thong_ho_tro_y_te.Models.DB.Bill>
+@using PagedList.Mvc
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<div class="box-body">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Quản lý đơn hàng</h3>
+                </div>
+            </div>
+            <!-- /search form -->
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Mã đơn hàng</th>
+                            <th class="text-center">Tên khách hàng</th>
+                            <th class="text-center">Email</th>
+                            <th class="text-center">Số điện thoại</th>
+                            <th class="text-center">Địa chỉ</th>
+
+
+                            <th class="text-center">Tổng tiền</th>
+
+                            <th class="text-center">Ngày đặt hàng</th>
+                            <th class="text-center">Ghi chú</th>
+                            <th class="text-center">Chức năng</th>
+                            <th class="text-center">Duyệt</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var i = 0; i < Model.Count; i++)
+                        {
+                            var item = Model.ElementAt(i);
+                            <tr>
+                                <td class="text-center">@item.IdBill</td>
+                                <td>@item.Name</td>
+                                <td>@item.Email</td>
+                                <td class="text-right">@item.Phone</td>
+                                <td>@item.DeliveryAddress</td>
+
+
+                                <td class="text-right">@item.TotalMoney</td>
+                                <td class="text-center">@item.CreatedDate</td>
+                                <td>@item.GhiChu</td>
+                                <td class="text-center">
+                                    <a href="#">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                    </a>
+                                    <a href="#" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                </td>
+                                @if (item.Duyet == true)
+                                {
+                                    <td class="text-center">Đã duyệt</td>
+                                }
+                                else
+                                {
+                                    <td class="text-center"><a href="~/Admin/Oder/Duyet?id=@item.IdBill">Duyệt</a></td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="col-sm-7">
+                    @Html.PagedListPager(Model, PageNum => Url.Action("List", new { PageNum, @searchString = @ViewBag.SearchString, @searchString2 = @ViewBag.SearchString2, @searchString3 = @ViewBag.SearchString3, @searchCat = @ViewBag.SearchCat }))
+                </div>
+                <div class="col-sm-7">
+                </div>
+            </div>
+        </div>
+        <!-- /.box-body -->
+
+    </div>
+    <!-- /.box -->
+    <!-- /.box -->
+</div>
+<!-- /.col -->
+<!-- /.row -->

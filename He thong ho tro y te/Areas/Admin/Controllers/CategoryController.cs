@@ -11,17 +11,43 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
         // GET: Admin/Category
-        
-        public ActionResult Delete(int id)
+
+        public ActionResult Index(string searchString, int PageNum = 1, int PageSize = 5)
         {
-            CategoryDAO dao = new CategoryDAO();
-            dao.Delete(id);
-            return Redirect("~/Admin/Category/Index");
+            // var dao = new ProductDAO();
+            //var model = dao.ListProductPage(searchString,searchString2,searchString3, searchCat,PageNum, PageSize);
+
+            CategoryDAO dao2 = new CategoryDAO();
+            var model = dao2.ListCategoryPage(searchString, PageNum, PageSize);
+            ViewBag.SearchString = searchString;
+
+            return View(model);
         }
         public ActionResult Add()
         {
             
             return View();
+        }
+        [HttpPost]
+        public ActionResult Add(string name)
+        {
+
+            Category product = new Category();
+
+            product.CategoryName = name;
+
+            if (ModelState.IsValid)
+            {
+
+                CategoryDAO dao = new CategoryDAO();
+                dao.Add(product);
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(product);
+            }
         }
         public ActionResult Edit(int id)
         {
@@ -53,37 +79,13 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
                 return View(product);
             }
         }
-        [HttpPost]
-        public ActionResult Add(string name)
+        
+        
+        public ActionResult Delete(int id)
         {
-            
-            Category product = new Category();
-            
-            product.CategoryName = name;
-            
-            if (ModelState.IsValid)
-            {
-                
-                    CategoryDAO dao = new CategoryDAO();
-                    dao.Add(product);
-                
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                return View(product);
-            }
-        }
-        public ActionResult Index(string searchString, int PageNum = 1, int PageSize = 5)
-        {
-            // var dao = new ProductDAO();
-            //var model = dao.ListProductPage(searchString,searchString2,searchString3, searchCat,PageNum, PageSize);
-            
-            CategoryDAO dao2 = new CategoryDAO();
-            var model = dao2.ListCategoryPage(searchString,PageNum,PageSize);
-            ViewBag.SearchString = searchString;
-            
-            return View(model);
+            CategoryDAO dao = new CategoryDAO();
+            dao.Delete(id);
+            return Redirect("~/Admin/Category/Index");
         }
     }
 }

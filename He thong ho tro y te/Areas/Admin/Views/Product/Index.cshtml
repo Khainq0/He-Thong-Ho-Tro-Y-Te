@@ -54,13 +54,13 @@
                             </div>
                         </div>
                     }
-                    <a href="~/Admin/Product/Add">Thêm mới  </a>
+                    <a href="~/Admin/Product/Add" class="btn btn-primary">Thêm mới  </a>
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th class="text-center">STT</th>
                                 <th class="text-center">Tên</th>
-                                <th class="text-center">Giá</th>
+                                <th class="text-center">Giá (VNĐ)</th>
                                 <th class="text-center">Số lượng</th>
                                 <th class="text-center">Loại dược phẩm</th>
                                 <th class="text-center">Ảnh</th>
@@ -77,7 +77,7 @@
                                     <td>
                                         @item.Name
                                     </td>
-                                    <td class="text-right">@item.Price</td>
+                                    <td class="text-right">@item.Price đ</td>
                                     <td class="text-center">@item.Amount</td>
                                     <td>@item.category_name</td>
                                     <td class="text-center"><img height="50px" src="~/Asset/Photo/@item.Image" /></td>

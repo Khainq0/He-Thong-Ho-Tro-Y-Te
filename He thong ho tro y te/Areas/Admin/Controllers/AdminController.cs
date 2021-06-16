@@ -19,12 +19,6 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
         {
             return View();
         }
-
-        public ActionResult Logout()
-        {
-            Session["username"] = null;
-            return Redirect("~/Home/Index");
-        }
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
@@ -54,6 +48,12 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
             }
             else return Redirect("Login");
         }
+        public ActionResult Logout()
+        {
+            Session["username"] = null;
+            return Redirect("~/Home/Index");
+        }
+        
         public ActionResult Register()
         {
             return View();

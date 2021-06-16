@@ -198,6 +198,8 @@
     <Compile Include="Areas\Doctor\Controllers\AppointmentController.cs" />
     <Compile Include="Areas\Doctor\Controllers\UserController.cs" />
     <Compile Include="Areas\Doctor\DoctorAreaRegistration.cs" />
+    <Compile Include="Areas\Patient\Controllers\BillController.cs" />
+    <Compile Include="Areas\Patient\PatientAreaRegistration.cs" />
     <Compile Include="Controllers\HeChuyenGiaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
@@ -4693,6 +4695,9 @@
     <Content Include="Areas\Admin\Views\Oder\List.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Add.cshtml" />
+    <Content Include="Areas\Patient\Views\web.config" />
+    <Content Include="Areas\Patient\Views\Bill\List.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Detail.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\ckeditor\ckeditor.php" />
     <Content Include="Scripts\ckeditor\ckeditor_basic.js" />
@@ -5089,6 +5094,9 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Doctor\Data\" />
+    <Folder Include="Areas\Patient\Data\" />
+    <Folder Include="Areas\Patient\Views\Appointment\" />
+    <Folder Include="Areas\Patient\Views\Shared\" />
     <Folder Include="Views\LichHen\" />
     <Folder Include="Views\User\" />
   </ItemGroup>

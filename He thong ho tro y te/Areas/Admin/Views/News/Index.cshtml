@@ -40,17 +40,17 @@
                             </div>
                         </div>
                     }
-                    <a href="~/Admin/News/Add">Thêm mới  </a>
+                    <a href="~/Admin/News/Add" class="btn btn-primary">Thêm mới  </a>
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>STT</th>
-                                <th>Tiêu đề</th>
-                                <th>Ảnh</th>
-                                <th>Ngày tạo</th>
-                                <th>Người tạo</th>
+                                <th class="text-center">STT</th>
+                                <th class="text-center">Tiêu đề</th>
+                                <th class="text-center">Ảnh</th>
+                                <th class="text-center">Ngày tạo</th>
+                                <th class="text-center">Người tạo</th>
                                
-                                <th>Chức năng</th>
+                                <th class="text-center">Chức năng</th>
 
                             </tr>
                         </thead>
@@ -63,11 +63,11 @@
                                     <td>
                                         @item.Name
                                     </td>
-                                    <td><img height="50px" src="~/Asset/Photo/@item.Image" /></td>
-                                    <td>@item.CreatedDate</td>
-                                    <td>@item.CreatedBy</td>
+                                    <td class="text-center"><img height="50px" src="~/Asset/Photo/@item.Image" /></td>
+                                    <td class="text-center">@item.CreatedDate</td>
+                                    <td class="text-center">@item.CreatedBy</td>
                                     
-                                    <td>
+                                    <td class="text-center">
                                         <a href="~/Admin/News/Edit/@item.ID">
                                             <span class="glyphicon glyphicon-edit"></span>
                                         </a>
