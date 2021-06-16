@@ -58,13 +58,13 @@
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>STT</th>
-                                <th>Tên</th>
-                                <th>Giá</th>
-                                <th>Số lượng</th>
-                                <th>Loại dược phẩm</th>
-                                <th>Ảnh</th>
-                                <th>Chức năng</th>
+                                <th class="text-center">STT</th>
+                                <th class="text-center">Tên</th>
+                                <th class="text-center">Giá</th>
+                                <th class="text-center">Số lượng</th>
+                                <th class="text-center">Loại dược phẩm</th>
+                                <th class="text-center">Ảnh</th>
+                                <th class="text-center">Chức năng</th>
 
                             </tr>
                         </thead>
@@ -73,15 +73,15 @@
                             {
                                 var item = Model.ElementAt(i);
                                 <tr>
-                                    <td>@(i + 1)</td>
+                                    <td class="text-center">@(i + 1)</td>
                                     <td>
                                         @item.Name
                                     </td>
-                                    <td>@item.Price</td>
-                                    <td>@item.Amount</td>
+                                    <td class="text-right">@item.Price</td>
+                                    <td class="text-center">@item.Amount</td>
                                     <td>@item.category_name</td>
-                                    <td><img height="50px" src="~/Asset/Photo/@item.Image" /></td>
-                                    <td>
+                                    <td class="text-center"><img height="50px" src="~/Asset/Photo/@item.Image" /></td>
+                                    <td class="text-center">
                                         <a href="~/Admin/Product/Edit/@item.Id">
                                             <span class="glyphicon glyphicon-edit"></span>
                                         </a>

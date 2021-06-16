@@ -8,7 +8,7 @@
 
 
 <body>
-    <div class="" style="margin-bottom:800px;margin-top:100px;margin-left:100px;margin-right:100px">
+    <div class="" style="margin-bottom:1800px  !important;margin-top:100px;margin-left:100px;margin-right:100px;">
         @ViewBag.count
         @foreach (var item in Model)
         {
@@ -22,34 +22,144 @@
                 </div>
                 <ul class="info">
                     <li>@item.Name</li>
-                    <li class="right-text">@item.Price</li>
+                    <li class="right-text">@item.Price Vnđ</li>
                 </ul>
-                <a href="/Shop/Add/@item.Id" class=" button w3l-cart">Thêm vào giỏ hàng</a>
-                @*<div class="snipcart-details ">
-                        <form action="#" method="post">
-                            <input type="hidden" name="cmd" value="_cart">
-                            <input type="hidden" name="add" value="1">
-                            <input type="hidden" name="w3l_item" value="Striped Top ">
-                            <input type="hidden" name="amount" value="25.00">
-                            <input type="hidden" name="item_name" value="Product #001" />
-                            <button type="submit" class="button w3l-cart" data-id="cart-1">Thêm vào giỏ hàng</button>
+                <div class="snipcart-details">
+                    <a href="/Shop/Add/@item.Id" class="w3l-cart">Add to cart</a>
+                 </div>
+                    @*<div class="snipcart-details ">
+            <form action="#" method="post">
+                <input type="hidden" name="cmd" value="_cart">
+                <input type="hidden" name="add" value="1">
+                <input type="hidden" name="w3l_item" value="Striped Top ">
+                <input type="hidden" name="amount" value="25.00">
+                <input type="hidden" name="item_name" value="Product #001" />
+                <button type="submit" class="button w3l-cart" data-id="cart-1">Thêm vào giỏ hàng</button>
 
-                        </form>
-                    </div>*@
+            </form>
+        </div>*@
 
-            </div>
+                </div>
         }
-        <div class="row">
-            <div class="pagination col-sm-12">
-
-                @Html.PagedListPager(Model, PageNum => Url.Action("Index", new { PageNum, @searchString = @ViewBag.SearchString }))
-
+        <div class="w3view-cart">
+            <div class="pagination">
+                
+                    @Html.PagedListPager(Model, PageNum => Url.Action("Index", new { PageNum, @searchString = @ViewBag.SearchString }))
+                
             </div>
         </div>
     </div>
 
 </body>
 <style>
+    .w3l-cart {
+        font-size: 13px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #900000;
+        border: none;
+        font-weight: 600;
+        padding: 14px 43px;
+        background: #ffa200;
+        cursor: pointer;
+        width: 100%;
+        font-family: 'Open Sans', sans-serif;
+    }
+    .info li {
+        color: #000;
+        font-size: 1.1em;
+        font-weight: 600;
+        display: inline-block;
+    }
+
+        .info li.right-text {
+            color: #777;
+            
+            margin-left: 6em;
+        }
+    ul.info {
+        margin: 1.5em 0;
+    }
+
+    .info ul li {
+        list-style: none;
+        display: inline-block;
+    }
+
+        .info ul li a {
+            display: block;
+            color: #000;
+            text-decoration: none;
+            float: left;
+            padding: 5px 20px;
+        }
+
+            .info ul li a:hover {
+                text-decoration: none;
+                color: #ff0000;
+            }
+
+            .info ul li a:hover,
+            .info ul li a:focus {
+                text-decoration: none;
+                box-shadow: none;
+            }
+    .snipcart-details {
+        font-size: 11px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #fff;
+        border: none;
+        padding: 10px 17px;
+        
+    }
+
+        
+    
+
+        
+    .w3l-cart {
+        transition: 0.5s all;
+        -webkit-transition: 0.5s all;
+        -moz-transition: 0.5s all;
+        -o-transition: 0.5s all;
+        
+        text-decoration: none;
+        outline: none;
+    }
+    .w3l-cart {
+        font-size: 13px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #900000;
+        border: none;
+        font-weight: 600;
+        padding: 14px 43px;
+        background: #ffa200;
+        cursor: pointer;
+        width: 100%;
+        font-family: 'Open Sans', sans-serif;
+    }
+    .w3view-cart {
+        cursor: pointer;
+        width: 20%;
+        margin: 1em auto 0;
+        display: block;
+        padding: 3px 0 9px 0px;
+        font-weight: 900;
+        border: none;
+        text-transform: uppercase;
+        font-size: 13px;
+        background: #fff;
+        font-family: 'Open Sans', sans-serif;
+        color: #900;
+    }
+        
+
+    .w3l-cart:hover {
+        background: #0f3370;
+        color: #fff;
+    }
     .cart-grid {
         width: 20%;
         float: left;

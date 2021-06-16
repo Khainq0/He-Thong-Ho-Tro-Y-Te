@@ -10,8 +10,8 @@ namespace He_thong_ho_tro_y_te.Models.DB
     public partial class Bill
     {
         [Key]
-        [StringLength(50)]
-        public string IdBill { get; set; }
+        
+        public int IdBill { get; set; }
 
         [StringLength(50)]
         public string Name { get; set; }
@@ -27,13 +27,17 @@ namespace He_thong_ho_tro_y_te.Models.DB
         [StringLength(50)]
         public string DeliveryTime { get; set; }
 
-        public int? TotalMoney { get; set; }
+        public double TotalMoney { get; set; }
 
         [StringLength(50)]
         public string Status { get; set; }
 
         [StringLength(50)]
         public string CreatedDate { get; set; }
+        [Column(TypeName = "ntext")]
+        public string GhiChu { get; set; }
+
+        public bool? Duyet { get; set; }
 
         public virtual DetailBill DetailBill { get; set; }
     }

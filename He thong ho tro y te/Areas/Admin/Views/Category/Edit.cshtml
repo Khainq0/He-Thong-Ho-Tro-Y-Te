@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Sửa loại dược phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLTELayout.cshtml";
+}
+
+@using He_thong_ho_tro_y_te.Models.DB;
+@{
+    var product = (Category)ViewBag.cat;
+}
+
+<form action="Edit" method="post" role="form" enctype="multipart/form-data">
+    <input type="hidden" id="id" name="id" value="@product.CategoryID" />
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Chỉnh sửa </h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Mã dược phẩm</label>
+
+                        <input type="text" class="form-control" name="" id="price" placeholder="" value="@product.CategoryID">
+                    </div>
+
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                        <label for="name">Tên loại dược phẩm</label>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Loại dược phẩm" value="@product.CategoryName">
+                    </div>
+                </div>
+                <!-- /.col -->
+                
+                <!-- /.col -->
+
+
+            </div>
+            
+            <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+
+    </div>
+    <div class="box-footer">
+        <input type="submit" class="btn btn-primary" value="Sửa" />
+    </div>
+</form>
+

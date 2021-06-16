@@ -10,15 +10,17 @@ namespace He_thong_ho_tro_y_te.Models.DB
     public partial class DetailBill
     {
         [Key]
-        [StringLength(50)]
-        public string IdBill { get; set; }
+        
+        public int IdBill { get; set; }
 
         public int? IdProduct { get; set; }
 
+        public string NameProduct { get; set; }
+
         public int? NumberProduct { get; set; }
 
-        [StringLength(50)]
-        public string TotalMoney { get; set; }
+        
+        public double TotalMoney { get; set; }
 
         public virtual Bill Bill { get; set; }
     }

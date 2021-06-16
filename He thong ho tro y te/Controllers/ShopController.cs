@@ -119,6 +119,37 @@ namespace He_thong_ho_tro_y_te.Controllers
                 listHangHoa = gio.returnTable();
                 return View(listHangHoa);
         }
+        [HttpPost]
+        public ActionResult CheckOut(string name, string email, string address, string phone, string ghichu,string deliverytime)
+        {
+            
+            GioHangHoa gio = (GioHangHoa)Session["cart"];
+            List<HangHoaBan> listHangHoa = new List<HangHoaBan>();
+            if (gio == null)
+                return View();
+            else
+            {
+                listHangHoa = gio.returnTable();
+                Bill order = new Bill();
+                BillDAO dao = new BillDAO();
+                order.CreatedDate = Convert.ToString(DateTime.Now);
+                order.Name = name;
+                order.Email = email;
+                order.DeliveryAddress = address;
+                order.Phone = phone;
+                order.GhiChu = ghichu;
+                order.DeliveryTime = deliverytime;
+                order.TotalMoney = gio.getTongTien();
+                dao.Add(order);
+                dao.DetailBill(listHangHoa);
+                listHangHoa.Clear();
+                return Redirect("Success");
+            }
+        }
+        public ActionResult Success()
+        {
+            return View();
+        }
 
     }
 }
