@@ -29,6 +29,20 @@ namespace He_thong_ho_tro_y_te.Controllers
             ProductDTO productDTO = new ProductDTO(product.Id, product.Name, product.Price, product.Amount, product.Image, product.CategoryID);
             return View(productDTO);
         }
+        [HttpPost]
+        public ActionResult Detail(int id, int sl)
+        {
+            ProductDAO dao = new ProductDAO();
+            Product product = dao.getById(id);
+            GioHangHoa gio = (GioHangHoa)Session["cart"];
+            if (gio == null)
+                gio = new GioHangHoa();
+            //truy van tu csdl
+            HangHoaBan hangHoa = new HangHoaBan(id, sl, product.Name, Convert.ToInt32(product.Price), product.Image, product.Describe);
+            gio.addHangHoa(hangHoa);
+            Session["cart"] = gio;
+            return Redirect(Request.UrlReferrer.ToString());
+        }
 
         public ActionResult Add(int id)
         {
@@ -114,7 +128,7 @@ namespace He_thong_ho_tro_y_te.Controllers
             List<HangHoaBan> listHangHoa = new List<HangHoaBan>();
 
             if (gio == null)
-                return View();
+                return Redirect("GioHangRong");
             else
                 listHangHoa = gio.returnTable();
                 return View(listHangHoa);

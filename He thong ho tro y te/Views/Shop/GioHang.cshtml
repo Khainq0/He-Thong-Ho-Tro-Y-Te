@@ -18,7 +18,7 @@
     </div>
     @foreach (var item in Model)
         {
-            <div class="product">
+            <div class="product row">
                 <div class="product-image">
                     <img src="~/Asset/Photo/@item.image">
                 </div>
@@ -28,8 +28,12 @@
                 </div>
                 <div class="product-price">@item.price</div>
                 <div class="product-quantity">
-                    <input type="number" value="@item.sl" min="1">
+                    <input type="number" value="@item.sl" id="@item.id" min="1">
+                    @*<input type="hidden" value="@item.id" id="idUpdate >*@
+                    
+
                 </div>
+               
                 <div class="product-removal">
                     @*<button class="remove-product" onclick="location.href='/Shop/Delete/@item.id'">
                         Xóa
@@ -54,8 +58,8 @@
             <div class="totals-value" id="cart-tax"></div>
         </div>
         <div class="totals-item">
-            <label>Phí vận chuyển</label>
-            <div class="totals-value" id="cart-shipping">30.000đ</div>
+            <label>Phí giao</label>
+            <div class="totals-value" id="cart-shipping"></div>
         </div>
         <div class="totals-item totals-item-total">
             <label>Tổng tiền</label>
@@ -120,28 +124,44 @@
 
         /* Update quantity */
         function updateQuantity(quantityInput) {
-        /* Calculate line price */
-            
-            var productRow = $(quantityInput).parent().parent();
-            var price = parseFloat(productRow.children('.product-price').text());
-            var quantity = $(quantityInput).val();
-            var linePrice = price * quantity;
+            /* Calculate line price */
+            @*window.location ="@Url.Action("Update","Shop",+"id")"*@
 
-            /* Update line price display and recalc cart totals */
-            productRow.children('.product-line-price').each(function () {
-                $(this).fadeOut(fadeTime, function () {
-                    $(this).text(linePrice.toFixed(2));
-                    recalculateCart();
-                    $(this).fadeIn(fadeTime);
+
+            //alert($(quantityInput).val());
+            //alert($(quantityInput).attr('id'));
+            var slUpdate = $(quantityInput).val();
+            var idUpdate = $(quantityInput).attr('id');
+            //alert(slUpdate);
+            //alert(idUpdate);
+            $.ajax({
+                    url: '@Url.Action("Update")',
+                    data: { "id": idUpdate, "sl": slUpdate }
                 });
-            });
+            window.location.href = '/Shop/GioHang';
+
+
+            //var productRow = $(quantityInput).parent().parent();
+            //var price = parseFloat(productRow.children('.product-price').text());
+            //var quantity = $(quantityInput).val();
+            //var linePrice = price * quantity;
+
+            ///* Update line price display and recalc cart totals */
+            //productRow.children('.product-line-price').each(function () {
+            //    $(this).fadeOut(fadeTime, function () {
+            //        $(this).text(linePrice.toFixed(2));
+            //        recalculateCart();
+            //        $(this).fadeIn(fadeTime);
+            //    });
+            //});
+
         }
 
 
         /* Remove item from cart */
         function removeItem(removeButton) {
             alert("Xoa thanh cong");
-           
+
             /* Remove row from DOM and recalc cart total */
             //var productRow = $(removeButton).parent().parent();
             //productRow.slideUp(fadeTime, function () {
@@ -206,8 +226,8 @@
 
         /* Apply clearfix in a few places */
         /* Apply dollar signs */
-        .product .product-price:before, .product .product-line-price:before, .totals-value:before {
-            content: '$';
+        .product .product-price:after, .product .product-line-price:after, .totals-value:after {
+            content: 'đ';
         }
 
     /* Body/Header stuff */

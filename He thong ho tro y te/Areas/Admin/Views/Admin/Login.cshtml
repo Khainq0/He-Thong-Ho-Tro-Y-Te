@@ -29,7 +29,7 @@
             <div class="card-body">
                 <p class="login-box-msg">Đăng nhập để bắt đầu phiên làm việc</p>
 
-                <form action="Login" method="post">
+                <form action="Login" method="post" id="">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" name="username" placeholder="Tên đăng nhập">
                         <div class="input-group-append">
@@ -57,14 +57,14 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-5">
-                            <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+                            <button type="submit" class="btn btn-primary btn-block" @*onclick="validate()*@">Đăng nhập</button>
                         </div>
                         <!-- /.col -->
                     </div>
                 </form>
 
                 <div class="social-auth-links text-center mt-2 mb-3">
-                    <a href="#" class="btn btn-block btn-primary">
+                    <a href="#" class="btn btn-block btn-primary" onclick="validate()">
                         <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
                     </a>
                     <a href="#" class="btn btn-block btn-danger">
@@ -96,9 +96,22 @@
             $('input').iCheck({
                 checkboxClass: 'icheckbox_square-blue',
                 radioClass: 'iradio_square-blue',
-                increaseArea: '20%' // optional
-            });
+                increaseArea: '20%'// optional
+             
+            })
+                
+            
+            
         });
+        function validate() {
+            alert("okd");
+            var username = $('#username').val();
+            alert(username);
+
+        };
+        
+        
+        
     </script>
 </body>
 </html>

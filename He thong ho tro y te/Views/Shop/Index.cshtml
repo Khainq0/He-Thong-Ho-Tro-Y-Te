@@ -10,48 +10,58 @@
 <body>
     <div class="" style="margin-bottom:1800px  !important;margin-top:100px;margin-left:100px;margin-right:100px;">
         @ViewBag.count
-        @foreach (var item in Model)
-        {
+        <div class="content">
+            @foreach (var item in Model)
+            {
 
-            <div class="cart-grid" id="cart-1" style="margin-bottom:10px">
-                <div class="img" >
-                    <a href="~/Shop/Detail/@item.Id">
+                <div class="cart-grid" id="cart-1" style="margin-bottom:10px">
+                    <div class="img">
+                        <a href="~/Shop/Detail/@item.Id">
 
-                        <img src="~/Asset/Photo/@item.Image" alt="img">
-                    </a>
-                </div>
-                <ul class="info">
-                    <li>@item.Name</li>
-                    <li class="right-text">@item.Price Vnđ</li>
-                </ul>
-                <div class="snipcart-details">
-                    <a href="/Shop/Add/@item.Id" class="w3l-cart">Add to cart</a>
-                 </div>
+                            <img src="~/Asset/Photo/@item.Image" alt="img">
+                        </a>
+                    </div>
+                    <ul class="info">
+                        <li>@item.Name</li>
+                        <li class="right-text">@item.Price Vnđ</li>
+                    </ul>
+                    <div class="snipcart-details">
+                        <a href="/Shop/Add/@item.Id" class="w3l-cart">Add to cart</a>
+                    </div>
                     @*<div class="snipcart-details ">
-            <form action="#" method="post">
-                <input type="hidden" name="cmd" value="_cart">
-                <input type="hidden" name="add" value="1">
-                <input type="hidden" name="w3l_item" value="Striped Top ">
-                <input type="hidden" name="amount" value="25.00">
-                <input type="hidden" name="item_name" value="Product #001" />
-                <button type="submit" class="button w3l-cart" data-id="cart-1">Thêm vào giỏ hàng</button>
+                    <form action="#" method="post">
+                        <input type="hidden" name="cmd" value="_cart">
+                        <input type="hidden" name="add" value="1">
+                        <input type="hidden" name="w3l_item" value="Striped Top ">
+                        <input type="hidden" name="amount" value="25.00">
+                        <input type="hidden" name="item_name" value="Product #001" />
+                        <button type="submit" class="button w3l-cart" data-id="cart-1">Thêm vào giỏ hàng</button>
 
-            </form>
-        </div>*@
+                    </form>
+                </div>*@
 
                 </div>
-        }
-        <div class="w3view-cart">
-            <div class="pagination">
-                
-                    @Html.PagedListPager(Model, PageNum => Url.Action("Index", new { PageNum, @searchString = @ViewBag.SearchString }))
-                
-            </div>
+            }
         </div>
+            <div class="w3view-cart">
+                <div class="pagination">
+
+                    @Html.PagedListPager(Model, PageNum => Url.Action("Index", new { PageNum, @searchString = @ViewBag.SearchString }))
+
+                </div>
+            </div>
+        
     </div>
 
 </body>
 <style>
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+        align-self: stretch;
+        background-color: rgb(255, 255, 255);
+        border-top: 1px solid rgb(242, 242, 242);
+    }
     .w3l-cart {
         font-size: 13px;
         letter-spacing: 1px;

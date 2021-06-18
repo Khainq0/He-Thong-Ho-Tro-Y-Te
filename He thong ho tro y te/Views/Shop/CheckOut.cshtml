@@ -85,11 +85,11 @@
 
                 @foreach (var item in Model)
                 {
-                    <p><a href="#">@item.name</a> <span class="price">@(item.price*item.sl)</span></p>
+                    <p><a href="#">@item.name</a> <span class="price">@(item.price*item.sl)đ</span></p>
                 }
 
                 <hr>
-                <p>Phí ship <span class="price" style="color:black"><b>30.000 đ</b></span></p>
+                <p>Phí ship <span class="price" style="color:black"><b>30.000đ</b></span></p>
                 <p>Tổng tiền <span class="price" style="color:black"><b>@Html.Action("TotalMoney", "Shop")</b></span></p>
             </div>
         </div>
