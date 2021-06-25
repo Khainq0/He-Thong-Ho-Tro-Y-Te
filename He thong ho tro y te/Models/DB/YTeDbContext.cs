@@ -50,8 +50,9 @@ namespace He_thong_ho_tro_y_te.Models.DB
                 .IsFixedLength();
 
             modelBuilder.Entity<Bill>()
-                .HasOptional(e => e.DetailBill)
-                .WithRequired(e => e.Bill);
+                .HasMany(e => e.DetailBills)
+                .WithRequired(e => e.Bill)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Category>()
                 .Property(e => e.MetaTitle)

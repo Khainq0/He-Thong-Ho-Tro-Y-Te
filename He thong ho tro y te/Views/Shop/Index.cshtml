@@ -3,14 +3,33 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/HomeTemplate.cshtml";
 }
-@model PagedList.IPagedList<He_thong_ho_tro_y_te.Models.DB.Product>
+@model PagedList.IPagedList<He_thong_ho_tro_y_te.Models.DTO.ProductDTO>
 @using PagedList.Mvc
-
+@using System.Globalization
 
 <body>
-    <div class="" style="margin-bottom:1800px  !important;margin-top:100px;margin-left:100px;margin-right:100px;">
+    <div class="" style="margin-bottom:200px  !important;margin-left:100px;margin-right:100px;">
         @ViewBag.count
+        <form class="Vegetable">
+
+            <input class="Vegetable_fom" placeholder="Search" type="text" name="searchString">
+            <button class="Search_btn" type="submit">Tìm kiếm</button>
+            <div class="col-lg-12 row" style="padding-top:10px">
+                <div class="input-group col-md-4" ><input pattern="[0-9]*" placeholder="Giá từ" name="searchString2"><span>-</span><input pattern="[0-9]*" placeholder="Giá đến" name="searchString3"></div>
+                <div class="col-md-2">
+                    <select class="form-control" value="@ViewBag.SearchCat" style="margin-left:100px" name="searchCat">
+                        <option disabled selected value> Loại dược phẩm </option>
+                        @foreach (var item in ViewBag.cat)
+                        {
+                            <option>@item.CategoryName</option>
+                        }
+
+                    </select>
+                </div>
+                </div>
+        </form>
         <div class="content">
+
             @foreach (var item in Model)
             {
 
@@ -23,34 +42,33 @@
                     </div>
                     <ul class="info">
                         <li>@item.Name</li>
-                        <li class="right-text">@item.Price Vnđ</li>
+                        <li class="right-text">@(Convert.ToDouble(item.Price).ToString("C0", CultureInfo.CreateSpecificCulture("vi-VN")))</li>
                     </ul>
                     <div class="snipcart-details">
                         <a href="/Shop/Add/@item.Id" class="w3l-cart">Add to cart</a>
                     </div>
                     @*<div class="snipcart-details ">
-                    <form action="#" method="post">
-                        <input type="hidden" name="cmd" value="_cart">
-                        <input type="hidden" name="add" value="1">
-                        <input type="hidden" name="w3l_item" value="Striped Top ">
-                        <input type="hidden" name="amount" value="25.00">
-                        <input type="hidden" name="item_name" value="Product #001" />
-                        <button type="submit" class="button w3l-cart" data-id="cart-1">Thêm vào giỏ hàng</button>
+                        <form action="#" method="post">
+                            <input type="hidden" name="cmd" value="_cart">
+                            <input type="hidden" name="add" value="1">
+                            <input type="hidden" name="w3l_item" value="Striped Top ">
+                            <input type="hidden" name="amount" value="25.00">
+                            <input type="hidden" name="item_name" value="Product #001" />
+                            <button type="submit" class="button w3l-cart" data-id="cart-1">Thêm vào giỏ hàng</button>
 
-                    </form>
-                </div>*@
+                        </form>
+                    </div>*@
 
                 </div>
             }
         </div>
-            <div class="w3view-cart">
-                <div class="pagination">
+        <div class="w3view-cart">
+            <div class="pagination">
 
-                    @Html.PagedListPager(Model, PageNum => Url.Action("Index", new { PageNum, @searchString = @ViewBag.SearchString }))
-
-                </div>
+                @Html.PagedListPager(Model, PageNum => Url.Action("Index", new { PageNum, @searchString = @ViewBag.SearchString, @searchString2 = @ViewBag.SearchString2, @searchString3 = @ViewBag.SearchString3, @searchString4 = @ViewBag.SearchString4, @searchString5 = @ViewBag.SearchString5, @searchCat = @ViewBag.SearchCat }))
             </div>
-        
+        </div>
+
     </div>
 
 </body>
@@ -85,7 +103,7 @@
         .info li.right-text {
             color: #777;
             
-            margin-left: 6em;
+            margin-left: 8em;
         }
     ul.info {
         margin: 1.5em 0;

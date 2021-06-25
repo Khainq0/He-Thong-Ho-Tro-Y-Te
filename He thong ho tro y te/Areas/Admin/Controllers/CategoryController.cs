@@ -83,9 +83,20 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
         
         public ActionResult Delete(int id)
         {
+            
             CategoryDAO dao = new CategoryDAO();
-            dao.Delete(id);
-            return Redirect("~/Admin/Category/Index");
+            bool checkPro = dao.checkProduct(id);
+            if (checkPro == true)
+            {
+                TempData["msg"] = "<script>alert('Xóa thất bại!! Bạn phải xóa hết sản phẩm thuộc loại hàng hóa này.');</script>";
+                
+            }
+            else {
+                dao.Delete(id);
+                
+            }
+            return Redirect(Request.UrlReferrer.ToString());
+
         }
     }
 }

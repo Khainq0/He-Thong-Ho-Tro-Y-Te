@@ -2,15 +2,25 @@
     ViewBag.Title = "Thanh toán";
     Layout = "~/Views/Shared/HomeTemplate.cshtml";
 }
-
+@using System.Globalization
 @model List<He_thong_ho_tro_y_te.Models.DAO.HangHoaBan>
+
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="~/Content/AdminLTE/plugins/fontawesome-free/css/all.min.css">
+<!-- icheck bootstrap -->
+<link rel="stylesheet" href="~/Content/AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="~/Content/AdminLTE/dist/css/adminlte.min.css">
+
 <link href="~/Content/fontawesome-free-5.15.3-web/css/fontawesome.css" rel="stylesheet" />
 <link href="~/Content/fontawesome-free-5.15.3-web/css/fontawesome.min.css" rel="stylesheet" />
-<form action="CheckOut" method="post" role="form" enctype="multipart/form-data">
+<form action="CheckOut" method="post" role="form" enctype="multipart/form-data" id="Login">
     <div class="row" style="margin:100px">
         <div class="col-75">
             <div class="container">
-                <form action="/action_page.php">
+                <div >
 
                     <div class="row">
                         <div class="col-50">
@@ -18,11 +28,11 @@
                             <label for="fname"><i class="fa fa-user"></i> Họ tên</label>
                             <input type="text" id="fname" name="name" placeholder="Nguyễn Văn A">
                             <label for="email"><i class="fa fa-envelope"></i>Thư điện tử</label>
-                            <input type="text" id="email" name="email" placeholder="email@email.com">
+                            <input type="text" pattern="^[a-zA-Z0-9._+-]+@("@")[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" id="email" name="email" placeholder="email@email.com">
                             <label for="adr"><i class="fa fa-address-card-o"></i>Địa chỉ</label>
                             <input type="text" id="adr" name="address" placeholder="Số nhà, đường, thành phố">
-                            <label for="city"><i class="fa fa-institution"></i>Số điện thoại</label>
-                            <input type="text" id="city" name="phone" placeholder="0123456789">
+                            <label for="text"><i class="fa fa-institution"></i>Số điện thoại</label>
+                            <input type="text" pattern="[0-9]*" id="phone" name="phone" placeholder="0123456789">
 
                             <div class="row">
                                 <div class="col-50">
@@ -68,10 +78,11 @@
                     <label>
                         <input type="checkbox" checked="checked" name="sameadr"> Thanh toán tại nhà
                     </label>
-                    <input type="submit" value="Tiến hành đặt hàng" class="btn">
-                </form>
+                    <button type="submit" value="" class="btn">Tiến hành đặt hàng</button>
+
             </div>
         </div>
+            </div>
 
         <div class="col-25">
             <div class="container">
@@ -85,95 +96,123 @@
 
                 @foreach (var item in Model)
                 {
-                    <p><a href="#">@item.name</a> <span class="price">@(item.price*item.sl)đ</span></p>
+                    <p><a href="#">@item.name</a> <span class="price">@*@(item.price*item.sl)đ*@@(Convert.ToDouble(item.price*item.sl).ToString("C0", CultureInfo.CreateSpecificCulture("vi-VN")))</span></p>
                 }
 
                 <hr>
-                <p>Phí ship <span class="price" style="color:black"><b>30.000đ</b></span></p>
+                <p>Phí ship <span class="price" style="color:black"><b></b></span></p>
                 <p>Tổng tiền <span class="price" style="color:black"><b>@Html.Action("TotalMoney", "Shop")</b></span></p>
             </div>
         </div>
     </div>
-    </form>
+</form>
+<script src="~/Content/AdminLTE/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="~/Content/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="~/Content/AdminLTE/dist/js/adminlte.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script>
+    //$(function () {
+    //    var input = document.getElementById('phone');
 
-    <style>
-        .row {
-            display: -ms-flexbox; /* IE10 */
-            display: flex;
-            -ms-flex-wrap: wrap; /* IE10 */
-            flex-wrap: wrap;
-            margin: 0 -16px;
+    //    input.oninvalid = function (event) {
+    //        event.target.setCustomValidity('Số điện thoại phải là số');
+    //    }
+
+    //    var input2 = document.getElementById('email');
+
+    //    input2.oninvalid = function (event) {
+    //        event.target.setCustomValidity('Email không đúng định dạng');
+    //    }
+        
+
+
+
+    //});
+    
+
+</script>
+
+<style>
+    .row {
+        display: -ms-flexbox; /* IE10 */
+        display: flex;
+        -ms-flex-wrap: wrap; /* IE10 */
+        flex-wrap: wrap;
+        margin: 0 -16px;
+    }
+
+    .col-25 {
+        -ms-flex: 25%; /* IE10 */
+        flex: 25%;
+    }
+
+    .col-50 {
+        -ms-flex: 50%; /* IE10 */
+        flex: 50%;
+    }
+
+    .col-75 {
+        -ms-flex: 75%; /* IE10 */
+        flex: 75%;
+    }
+
+    .col-25,
+    .col-50,
+    .col-75 {
+        padding: 0 16px;
+    }
+
+    .container {
+        background-color: #f2f2f2;
+        padding: 5px 20px 15px 20px;
+        border: 1px solid lightgrey;
+        border-radius: 3px;
+    }
+
+    input[type=text] {
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    label {
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .icon-container {
+        margin-bottom: 20px;
+        padding: 7px 0;
+        font-size: 24px;
+    }
+
+    .btn {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px;
+        margin: 10px 0;
+        border: none;
+        width: 100%;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 17px;
+    }
+
+        .btn:hover {
+            background-color: #45a049;
         }
 
-        .col-25 {
-            -ms-flex: 25%; /* IE10 */
-            flex: 25%;
-        }
+    span.price {
+        float: right;
+        color: grey;
+    }
 
-        .col-50 {
-            -ms-flex: 50%; /* IE10 */
-            flex: 50%;
-        }
+    /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
 
-        .col-75 {
-            -ms-flex: 75%; /* IE10 */
-            flex: 75%;
-        }
 
-        .col-25,
-        .col-50,
-        .col-75 {
-            padding: 0 16px;
-        }
-
-        .container {
-            background-color: #f2f2f2;
-            padding: 5px 20px 15px 20px;
-            border: 1px solid lightgrey;
-            border-radius: 3px;
-        }
-
-        input[type=text] {
-            width: 100%;
-            margin-bottom: 20px;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
-
-        label {
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .icon-container {
-            margin-bottom: 20px;
-            padding: 7px 0;
-            font-size: 24px;
-        }
-
-        .btn {
-            background-color: #04AA6D;
-            color: white;
-            padding: 12px;
-            margin: 10px 0;
-            border: none;
-            width: 100%;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 17px;
-        }
-
-            .btn:hover {
-                background-color: #45a049;
-            }
-
-        span.price {
-            float: right;
-            color: grey;
-        }
-
-        /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
-
-        }
-    </style>
+</style>

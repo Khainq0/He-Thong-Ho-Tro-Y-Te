@@ -7,12 +7,28 @@
 @using PagedList.Mvc
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Quản lý đơn hàng</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="~/Admin/Admin/Index">Trang chủ</a></li>
+                    <li class="breadcrumb-item active"><a href="~/Admin/Order/List">Quản lý đơn hàng</a></li>
+                    <li class="breadcrumb-item active">Quản lý đơn hàng</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
 <div class="box-body">
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Quản lý đơn hàng</h3>
+                    <h3 class="box-title"></h3>
                 </div>
             </div>
             <!-- /search form -->
@@ -55,7 +71,10 @@
                                 <a href="#">
                                     <span class="glyphicon glyphicon-edit"></span>
                                 </a>
-                                    <a href="#" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                                <a href="~/Admin/Oder/ShowDetailOrder/@item.IdBill">
+                                    <span class="glyphicon glyphicon-list"></span>
+                                </a>
+                                <a href="~/Admin/Oder/Delete/@item.IdBill" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </a>
                             </td>

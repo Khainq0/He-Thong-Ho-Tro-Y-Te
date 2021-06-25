@@ -79,7 +79,7 @@ namespace He_thong_ho_tro_y_te.Models.DAO
             db.SaveChanges();
         }
         public void DetailBill(List<HangHoaBan> Hanghoa)
-        {
+        {   
             var hoaDon = (from h in db.Bills orderby h.IdBill descending select h).FirstOrDefault();
             foreach (var item in Hanghoa)
             {
@@ -91,6 +91,17 @@ namespace He_thong_ho_tro_y_te.Models.DAO
                 db.DetailBills.Add(ct);
                 db.SaveChanges();
             }
+        }
+
+        public List<DetailBill> ShowDetailOrder(int id)
+        {
+            List<DetailBill> listHangHoa = new List<DetailBill>();
+            foreach (var item in db.DetailBills.ToList())
+            {
+                if (item.IdBill == id) listHangHoa.Add(item);
+                
+            }
+            return listHangHoa;
         }
     }
 }

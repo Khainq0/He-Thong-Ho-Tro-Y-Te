@@ -4698,6 +4698,7 @@
     <Content Include="Areas\Patient\Views\web.config" />
     <Content Include="Areas\Patient\Views\Bill\List.cshtml" />
     <Content Include="Areas\Admin\Views\User\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Oder\ShowDetailOrder.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\ckeditor\ckeditor.php" />
     <Content Include="Scripts\ckeditor\ckeditor_basic.js" />

@@ -5,18 +5,42 @@
 }
 @model PagedList.IPagedList<He_thong_ho_tro_y_te.Models.DTO.ProductDTO>
 @using PagedList.Mvc
+@using System.Globalization
 
 
-
-
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Quản lý sản phẩm</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="~/Admin/Admin/Index">Trang chủ</a></li>
+                    <li class="breadcrumb-item active"><a href="~/Admin/Product/Index">Quản lý sản phẩm</a></li>
+                    <li class="breadcrumb-item active">Sản phẩm</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 <div class="box-body">
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Quản lý sản phẩm</h3>
+                    <h3 class="box-title"></h3>
                 </div>
+                @*<nav aria-label="breadcrumb">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="~/Admin/Index">Trang chủ</a></li>
+                        <li class="breadcrumb-item active"><a href="~/Product/Index">Quản lý sản phẩm</a></li>
+                        <li class="breadcrumb-item active"><a href="~/Product/Index">Sản phẩm</a></li>
+                    </ol>
+                </nav>*@
+
             </div>
             <!-- /search form -->
             <!-- /.box-header -->
@@ -30,26 +54,36 @@
                                 <div class="col-md-3 row">
                                     <input type="text" value="@ViewBag.SearchString" class="form-control" name="searchString" />
                                 </div>
-                                <label class="col-lg-1">Giá khoảng</label>
+                                <label class="col-lg-2 text-right">Giá khoảng</label>
                                 <div class="col-md-2">
-                                    <input type="text" value="@ViewBag.SearchString2" class="form-control" name="searchString2" />
+                                    <input type="text" value="@ViewBag.SearchString2" class="form-control" name="searchString2" placeholder="Từ"/>
                                 </div>
                                 <div class="col-md-2">
-                                    <input type="text" value="@ViewBag.SearchString3" class="form-control" name="searchString3" />
+                                    <input type="text" value="@ViewBag.SearchString3" class="form-control" name="searchString3" placeholder="Đến"/>
+                                </div>
+                                </div>
+                            <div class="col-lg-12" style="padding-top:10px">
+                                <label class="col-lg-1 row">Số lượng</label>
+                                <div class="col-md-2 row">
+                                    <input type="text" value="@ViewBag.SearchString4" class="form-control" name="searchString4" placeholder="Từ"/>
                                 </div>
                                 <div class="col-md-2">
-                                    <select class="form-control" value="@ViewBag.SearchCat" name="searchCat" >
-                                        <option >Loại sản phẩm</option>
-                                        @foreach (var item in ViewBag.cat)
-                                        {
-                                            <option >@item.CategoryName</option>
-                                        }
+                                    <input type="text" value="@ViewBag.SearchString5" class="form-control" name="searchString5" placeholder="Đến"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <select class="form-control" value="@ViewBag.SearchCat" style="margin-left:100px" name="searchCat">
+                                        <option disabled selected value> Loại dược phẩm </option>
+                                            @foreach (var item in ViewBag.cat)
+                                            {
+                                                <option>@item.CategoryName</option>
+                                            }
+                                       
                                     </select>
                                 </div>
-                                
+
 
                                 <div class="col-md-4">
-                                    <button type="submit" class="btn btn-success" style="width: 21%; float: right; margin: 2px 5px 0;">Tìm kiếm</button>
+                                    <button type="submit" class="btn btn-success" style="width: 40%; float: right; margin: 2px 5px 0;">Tìm kiếm</button>
                                 </div>
                             </div>
                         </div>
@@ -77,7 +111,7 @@
                                     <td>
                                         @item.Name
                                     </td>
-                                    <td class="text-right">@item.Price đ</td>
+                                    <td class="text-right">@(Convert.ToDouble(item.Price).ToString("C0", CultureInfo.CreateSpecificCulture("vi-VN")))</td>
                                     <td class="text-center">@item.Amount</td>
                                     <td>@item.category_name</td>
                                     <td class="text-center"><img height="50px" src="~/Asset/Photo/@item.Image" /></td>
@@ -102,7 +136,7 @@
                     </table>
 
                     <div class="col-sm-7">
-                        @Html.PagedListPager(Model, PageNum => Url.Action("Index", new { PageNum, @searchString = @ViewBag.SearchString, @searchString2 = @ViewBag.SearchString2, @searchString3 = @ViewBag.SearchString3 ,@searchCat=@ViewBag.SearchCat}))
+                        @Html.PagedListPager(Model, PageNum => Url.Action("Index", new { PageNum, @searchString = @ViewBag.SearchString, @searchString2 = @ViewBag.SearchString2, @searchString3 = @ViewBag.SearchString3, @searchString4 = @ViewBag.SearchString4, @searchString5 = @ViewBag.SearchString5, @searchCat=@ViewBag.SearchCat}))
 
                     </div>
 

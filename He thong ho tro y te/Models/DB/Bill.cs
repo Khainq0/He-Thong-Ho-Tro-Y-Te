@@ -9,8 +9,13 @@ namespace He_thong_ho_tro_y_te.Models.DB
     [Table("Bill")]
     public partial class Bill
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Bill()
+        {
+            DetailBills = new HashSet<DetailBill>();
+        }
+
         [Key]
-        
         public int IdBill { get; set; }
 
         [StringLength(50)]
@@ -39,6 +44,7 @@ namespace He_thong_ho_tro_y_te.Models.DB
 
         public bool? Duyet { get; set; }
 
-        public virtual DetailBill DetailBill { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DetailBill> DetailBills { get; set; }
     }
 }

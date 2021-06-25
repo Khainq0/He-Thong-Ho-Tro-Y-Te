@@ -58,5 +58,13 @@ namespace He_thong_ho_tro_y_te.Models.DAO
             
             return model.OrderByDescending(x => x.CategoryID).ToPagedList(Pagenum, Pagesize);
         }
+        public bool checkProduct(int id)
+        {
+            foreach(var i in db.Products.ToList())
+            {
+                if (id == i.CategoryID) return true;
+            }
+            return false;
+        }
     }
 }

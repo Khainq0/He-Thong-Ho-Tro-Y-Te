@@ -1,54 +1,48 @@
 ﻿
 @{
-    ViewBag.Title = "GioHang";
-    Layout = "~/Views/Shared/HomeTemplate.cshtml";
+    ViewBag.Title = "ShowDetailOrder";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLTELayout.cshtml";
 }
-@*@model He_thong_ho_tro_y_te.Models.DAO.HangHoaBan*@
-@model List<He_thong_ho_tro_y_te.Models.DAO.HangHoaBan>
+@model List<He_thong_ho_tro_y_te.Models.DB.DetailBill>
 @using System.Globalization
-
 <form style="margin-left:100px;margin-right:100px;margin-bottom:800px;margin-top:100px">
     <div class="column-labels">
-        <label class="product-image" style="color:black">Ảnh</label>
+       
         <label class="product-details">Tên sản phẩm</label>
-        <label class="product-price">Giá</label>
+       
         <label class="product-quantity">Số lượng</label>
         <label class="product-removal">Xóa</label>
         <label class="product-line-price">Tổng tiền</label>
     </div>
     @foreach (var item in Model)
-        {
-            <div class="product row">
-                <div class="product-image">
-                    <img src="~/Asset/Photo/@item.image">
-                </div>
-                <div class="product-details">
-                    <div class="product-title">@item.name</div>
-                    <p class="product-description"> @item.describe</p>
-                </div>
-                <div class="product-price">@(Convert.ToDouble(item.price).ToString("C0", CultureInfo.CreateSpecificCulture("vi-VN")))</div>
-                <div class="product-quantity">
-                    <input type="number" value="@item.sl" id="@item.id" min="1">
-                    @*<input type="hidden" value="@item.id" id="idUpdate >*@
-                    
-
-                </div>
+    {
+        <div class="product row">
+            
+            <div class="product-details">
+                <div class="product-title">@item.NameProduct</div>
                
-                <div class="product-removal">
-                    @*<button class="remove-product" onclick="location.href='/Shop/Delete/@item.id'">
+            </div>
+           
+            <div class="product-quantity">
+                <div class="product-title">@item.NumberProduct</div>
+                @*<input type="hidden" value="@item.id" id="idUpdate >*@
+            </div>
+
+            <div class="product-removal">
+                @*<button class="remove-product" onclick="location.href='/Shop/Delete/@item.id'">
                         Xóa
                     </button>*@
-                    <a href="~/Shop/Delete/@item.id" class="remove-product">Xóa</a>
-                   
-                </div>
-                <div class="product-line-price">@(Convert.ToDouble(item.price*item.sl).ToString("C0", CultureInfo.CreateSpecificCulture("vi-VN"))) </div>
+                <a href="~/Shop/Delete/@item.Id" class="remove-product">Xóa</a>
+
             </div>
-        }
+            <div class="product-line-price">@(Convert.ToDouble(item.TotalMoney).ToString("C0", CultureInfo.CreateSpecificCulture("vi-VN"))) </div>
+        </div>
+    }
 
 
 
 
-    <div class="totals">
+    @*<div class="totals">
         <div class="totals-item">
             <label>Phụ phí</label>
             <div class="totals-value" id="cart-subtotal"></div>
@@ -63,12 +57,12 @@
         </div>
         <div class="totals-item totals-item-total">
             <label>Tổng tiền</label>
-            <div class="totals-value" id="cart-total">@Html.Action("TotalMoney", "Shop") </div>
+            <div class="totals-value" id="cart-total"></div>
         </div>
 
-    </div>
+    </div>*@
 
-    <a href="~/Shop/CheckOut" class="checkout">Thanh toán </a>
+
 
 </form>
 
@@ -224,23 +218,22 @@
         zoom: 1;
     }
 
-        /* Apply clearfix in a few places */
-        /* Apply dollar signs */
-        /*.product .product-price:after, .product .product-line-price:after, .totals-value:after {
+    /* Apply clearfix in a few places */
+    /* Apply dollar signs */
+    /*.product .product-price:after, .product .product-line-price:after, .totals-value:after {
             content: 'đ';
         }*/
 
     /* Body/Header stuff */
     body {
-        
-        color:black;
+        color: black;
         /*font-weight: 100;*/
     }
 
-  
+
 
     label {
-       /* color: #aaa;*/
+        /* color: #aaa;*/
     }
 
     .shopping-cart {
@@ -341,3 +334,5 @@
             background-color: #494;
         }
 </style>
+<h2>ShowDetailOrder</h2>
+

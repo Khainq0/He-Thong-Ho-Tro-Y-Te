@@ -31,22 +31,27 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
 
             //}
             //else return Redirect("Login");
-            UserDAO dao = new UserDAO();
-            var result = dao.checkLoginHome(username, password);
-            if (result == 1)
+            if (ModelState.IsValid)
             {
-                Session["username"] = username;
-                Session["groupid"] = "ADMIN";
-                return Redirect("~/Home/Index");
+                UserDAO dao = new UserDAO();
+                var result = dao.checkLoginHome(username, password);
+                if (result == 1)
+                {
+                    Session["username"] = username;
+                    Session["groupid"] = "ADMIN";
+                    return Redirect("~/Home/Index");
 
+                }
+                else if (result == 2)
+                {
+                    Session["groupid"] = "DOCTOR";
+                    Session["username"] = username;
+                    return Redirect("~/Home/Index");
+                }
+                else ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không đúng");
             }
-            else if (result == 2)
-            {
-                Session["groupid"] = "DOCTOR";
-                Session["username"] = username;
-                return Redirect("~/Home/Index");
-            }
-            else return Redirect("Login");
+            return View();
+            
         }
         public ActionResult Logout()
         {

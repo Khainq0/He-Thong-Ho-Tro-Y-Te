@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/HomeTemplate.cshtml";
 }
 @model He_thong_ho_tro_y_te.Models.DTO.ProductDTO
+@using System.Globalization
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 
@@ -45,7 +46,7 @@
                                 <span class="review-no">41 reviews</span>
                             </div>
                             <p class="product-description">@Model.Describe</p>
-                            <h4 class="price">Giá: <span>@Model.Price vnđ</span></h4>
+                            <h4 class="price">Giá: <span>@(Convert.ToDouble(Model.Price).ToString("C0", CultureInfo.CreateSpecificCulture("vi-VN")))</span></h4>
                             <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
                             <h5>
                                 <div class="">

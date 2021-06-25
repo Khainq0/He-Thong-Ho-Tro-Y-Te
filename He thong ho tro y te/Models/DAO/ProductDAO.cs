@@ -98,7 +98,7 @@ namespace He_thong_ho_tro_y_te.Models.DAO
             }
             return model.OrderByDescending(x => x.Id).ToPagedList(Pagenum, Pagesize);
         }
-        public IEnumerable<ProductDTO> lstjoin(string searchString, string searchString2, string searchString3, string searchCat,  int Pagenum, int Pagesize)
+        public IEnumerable<ProductDTO> lstjoin(string searchString, string searchString2, string searchString3,string searchString4,string searchString5, string searchCat,  int Pagenum, int Pagesize)
         {
             //var lst = db.Database.SqlQuery<ProductDTO>("select " +
             //    "pro.Id as id, " +
@@ -124,55 +124,84 @@ namespace He_thong_ho_tro_y_te.Models.DAO
                           CategoryID =p.CategoryID,
                           category_name=c.CategoryName
                       };
-           
-           if (!string.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
-                lst = lst.Where(x => x.Name.Contains(searchString) || x.Price.ToString().Contains(searchString)|| x.category_name.Contains(searchString));
-                if (!string.IsNullOrEmpty(searchString2) && !string.IsNullOrEmpty(searchString3))
-                {
-                    int tu = Int32.Parse(searchString2);
-                    int den = Int32.Parse(searchString3);
-                    lst = lst.Where(x => x.Price >= tu && x.Price <= den);
-
-
-                }
+                lst = lst.Where(x => x.Name.Contains(searchString) || x.Price.ToString().Contains(searchString) || x.category_name.Contains(searchString) || x.Amount.ToString().Contains(searchString));
+                
             }
-           else if (!string.IsNullOrEmpty(searchString2))
+            if (!string.IsNullOrEmpty(searchString2))
             {
                 int tu = Int32.Parse(searchString2);
-                lst = lst.Where(x => x.Price >= tu );
-                if (!string.IsNullOrEmpty(searchString2) && !string.IsNullOrEmpty(searchString3))
-                {
-                    
-                    int den = Int32.Parse(searchString3);
-                    lst = lst.Where(x => x.Price >= tu && x.Price <= den);
-
-
-                }
-
-            }
-            else if (!string.IsNullOrEmpty(searchString3))
+                lst = lst.Where(x => x.Price >= tu);
+             }
+            if (!string.IsNullOrEmpty(searchString3))
             {
                 int mau = Int32.Parse(searchString3);
                 lst = lst.Where(x => x.Price <= mau);
-                if (!string.IsNullOrEmpty(searchString2) && !string.IsNullOrEmpty(searchString3))
-                {
-                    int tu = Int32.Parse(searchString2);
-                    int den = Int32.Parse(searchString3);
-                    lst = lst.Where(x => x.Price >= tu && x.Price <= den);
-
-
-                }
-
-            }
-
-            else if (!string.IsNullOrEmpty(searchCat))
+               }
+            if (!string.IsNullOrEmpty(searchString4))
             {
-               lst = lst.Where(x => x.category_name.Contains(searchCat));
+                int tu2 = Int32.Parse(searchString4);
+                lst = lst.Where(x => x.Amount>= tu2);
+            }
+            if (!string.IsNullOrEmpty(searchString5))
+            {
+                int mau2 = Int32.Parse(searchString5);
+                lst = lst.Where(x => x.Amount <= mau2);
+            }
+            if (!string.IsNullOrEmpty(searchCat))
+            {
+                lst = lst.Where(x => x.category_name.Contains(searchCat));
 
             }
+            /*if (!string.IsNullOrEmpty(searchString))
+             {
+                 lst = lst.Where(x => x.Name.Contains(searchString) || x.Price.ToString().Contains(searchString)|| x.category_name.Contains(searchString));
+                 if (!string.IsNullOrEmpty(searchString2) && !string.IsNullOrEmpty(searchString3))
+                 {
+                     int tu = Int32.Parse(searchString2);
+                     int den = Int32.Parse(searchString3);
+                     lst = lst.Where(x => x.Price >= tu && x.Price <= den);
 
-             return lst.OrderByDescending(x=>x.Id).ToPagedList(Pagenum,Pagesize);
+
+                 }
+             }
+            else if (!string.IsNullOrEmpty(searchString2))
+             {
+                 int tu = Int32.Parse(searchString2);
+                 lst = lst.Where(x => x.Price >= tu );
+                 if (!string.IsNullOrEmpty(searchString2) && !string.IsNullOrEmpty(searchString3))
+                 {
+
+                     int den = Int32.Parse(searchString3);
+                     lst = lst.Where(x => x.Price >= tu && x.Price <= den);
+
+
+                 }
+
+             }
+             else if (!string.IsNullOrEmpty(searchString3))
+             {
+                 int mau = Int32.Parse(searchString3);
+                 lst = lst.Where(x => x.Price <= mau);
+                 if (!string.IsNullOrEmpty(searchString2) && !string.IsNullOrEmpty(searchString3))
+                 {
+                     int tu = Int32.Parse(searchString2);
+                     int den = Int32.Parse(searchString3);
+                     lst = lst.Where(x => x.Price >= tu && x.Price <= den);
+
+
+                 }
+
+             }
+
+             else if (!string.IsNullOrEmpty(searchCat))
+             {
+                lst = lst.Where(x => x.category_name.Contains(searchCat));
+
+             }*/
+
+            return lst.OrderByDescending(x=>x.Id).ToPagedList(Pagenum,Pagesize);
            
             
         }
@@ -202,6 +231,7 @@ namespace He_thong_ho_tro_y_te.Models.DAO
             var product = db.Products.Find(productId);
             return db.Products.Where(x => x.Id != productId && x.CategoryID == product.CategoryID).ToList();
         }
+        
 
 
     }

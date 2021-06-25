@@ -15,17 +15,19 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
 
         // GET: QLSanPham
 
-        public ActionResult Index(string searchString, string searchString2, string searchString3, string searchCat, int categoryID = 0, int PageNum = 1, int PageSize = 5)
+        public ActionResult Index(string searchString, string searchString2, string searchString3, string searchString4,string searchString5, string searchCat, int categoryID = 0, int PageNum = 1, int PageSize = 5)
         {
             // var dao = new ProductDAO();
             //var model = dao.ListProductPage(searchString,searchString2,searchString3, searchCat,PageNum, PageSize);
             var dao = new ProductDAO();
-            var model = dao.lstjoin(searchString, searchString2, searchString3, searchCat, PageNum, PageSize);
+            var model = dao.lstjoin(searchString, searchString2, searchString3, searchString4, searchString5, searchCat, PageNum, PageSize);
             CategoryDAO dao2 = new CategoryDAO();
             ViewBag.cat = dao2.ListCate();
             ViewBag.SearchString = searchString;
             ViewBag.SearchString2 = searchString2;
             ViewBag.SearchString3 = searchString3;
+            ViewBag.SearchString4 = searchString4;
+            ViewBag.SearchString5 = searchString5;
             ViewBag.SearchCat = searchCat;
 
             return View(model);

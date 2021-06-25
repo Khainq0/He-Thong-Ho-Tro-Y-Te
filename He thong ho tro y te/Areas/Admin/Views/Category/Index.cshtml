@@ -8,8 +8,25 @@
 
 
 
-
+@Html.Raw(TempData["msg"])
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Quản lý loại dược phẩm</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="~/Admin/Admin/Index">Trang chủ</a></li>
+                    <li class="breadcrumb-item active"><a href="~/Admin/Category/Index">Quản lý loại dược phẩm</a></li>
+                    <li class="breadcrumb-item active">Quản lý loại dược phẩm</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
 <div class="box-body">
     <div class="row">
         <div class="col-xs-12">
@@ -30,7 +47,7 @@
                                 <div class="col-md-3 row">
                                     <input type="text" value="@ViewBag.SearchString" class="form-control" name="searchString" />
                                 </div>
-                                
+
 
 
                                 <div class="col-md-4">
@@ -45,9 +62,9 @@
                             <tr>
                                 <th class="text-center">STT</th>
                                 <th class="text-center">Mã dược phẩm</th>
-                                
+
                                 <th class="text-center">Loại dược phẩm</th>
-                                
+
                                 <th class="text-center">Chức năng</th>
 
                             </tr>
@@ -62,12 +79,12 @@
                                         @item.CategoryID
                                     </td>
                                     <td>@item.CategoryName</td>
-                                    
+
                                     <td class="text-center">
                                         <a href="~/Admin/Category/Edit/@item.CategoryID">
                                             <span class="glyphicon glyphicon-edit"></span>
                                         </a>
-                                        
+
 
                                         <a href="~/Admin/Category/Delete/@item.CategoryID" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
                                             <span class="glyphicon glyphicon-trash"></span>

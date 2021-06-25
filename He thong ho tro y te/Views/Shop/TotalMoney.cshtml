@@ -3,4 +3,5 @@
     Layout = null;
 }
 
-@ViewBag.totalmoney
+@using System.Globalization
+@(Convert.ToDouble(ViewBag.totalmoney).ToString("C0", CultureInfo.CreateSpecificCulture("vi-VN")))

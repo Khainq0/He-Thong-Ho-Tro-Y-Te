@@ -9,12 +9,13 @@ namespace He_thong_ho_tro_y_te.Models.DB
     [Table("DetailBill")]
     public partial class DetailBill
     {
-        [Key]
+        public int Id { get; set; }
         
         public int IdBill { get; set; }
 
         public int? IdProduct { get; set; }
 
+        [StringLength(250)]
         public string NameProduct { get; set; }
 
         public int? NumberProduct { get; set; }

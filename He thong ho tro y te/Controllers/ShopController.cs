@@ -14,12 +14,20 @@ namespace He_thong_ho_tro_y_te.Controllers
     {
         // GET: Shop
         
-        public ActionResult Index(string searchString,string searchString2, string searchString3,string searchCat, int categoryID = 0, int PageNum = 1, int PageSize = 15)
+        public ActionResult Index(string searchString,string searchString2, string searchString3, string searchString4, string searchString5, string searchCat, int categoryID = 0, int PageNum = 1, int PageSize = 15)
         {
             var dao = new ProductDAO();
-            var model = dao.ListProductPage(searchString,searchString2,searchString3,searchCat, PageNum, PageSize);
-
+            
+            var model = dao.lstjoin(searchString, searchString2, searchString3, searchString4, searchString5, searchCat, PageNum, PageSize);
+            CategoryDAO dao2 = new CategoryDAO();
+            ViewBag.cat = dao2.ListCate();
             ViewBag.SearchString = searchString;
+            ViewBag.SearchString = searchString;
+            ViewBag.SearchString2 = searchString2;
+            ViewBag.SearchString3 = searchString3;
+            ViewBag.SearchString4 = searchString4;
+            ViewBag.SearchString5 = searchString5;
+            ViewBag.SearchCat = searchCat;
 
             return View(model);
         }
@@ -143,21 +151,27 @@ namespace He_thong_ho_tro_y_te.Controllers
                 return View();
             else
             {
-                listHangHoa = gio.returnTable();
-                Bill order = new Bill();
-                BillDAO dao = new BillDAO();
-                order.CreatedDate = Convert.ToString(DateTime.Now);
-                order.Name = name;
-                order.Email = email;
-                order.DeliveryAddress = address;
-                order.Phone = phone;
-                order.GhiChu = ghichu;
-                order.DeliveryTime = deliverytime;
-                order.TotalMoney = gio.getTongTien();
-                dao.Add(order);
-                dao.DetailBill(listHangHoa);
-                listHangHoa.Clear();
-                return Redirect("Success");
+                if (ModelState.IsValid)
+                {
+                    listHangHoa = gio.returnTable();
+                    Bill order = new Bill();
+                    BillDAO dao = new BillDAO();
+                    order.CreatedDate = Convert.ToString(DateTime.Now);
+                    order.Name = name;
+                    order.Email = email;
+                    order.DeliveryAddress = address;
+                    order.Phone = phone;
+                    order.GhiChu = ghichu;
+                    order.DeliveryTime = deliverytime;
+                    order.TotalMoney = gio.getTongTien();
+                    dao.Add(order);
+                    dao.DetailBill(listHangHoa);
+                    listHangHoa.Clear();
+                    return Redirect("Success");
+
+                }
+                else return View();
+                    
             }
         }
         public ActionResult Success()
