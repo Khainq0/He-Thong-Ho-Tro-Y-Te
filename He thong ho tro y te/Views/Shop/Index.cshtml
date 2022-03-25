@@ -12,12 +12,12 @@
         @ViewBag.count
         <form class="Vegetable">
 
-            <input class="Vegetable_fom" placeholder="Search" type="text" name="searchString">
+            <input class="Vegetable_fom" placeholder="Nhập từ khóa..." type="text" name="searchString">
             <button class="Search_btn" type="submit">Tìm kiếm</button>
-            <div class="col-lg-12 row" style="padding-top:10px">
-                <div class="input-group col-md-4" ><input pattern="[0-9]*" placeholder="Giá từ" name="searchString2"><span>-</span><input pattern="[0-9]*" placeholder="Giá đến" name="searchString3"></div>
-                <div class="col-md-2">
-                    <select class="form-control" value="@ViewBag.SearchCat" style="margin-left:100px" name="searchCat">
+            <div class="col-lg-12 " style="padding-top:10px">
+                <div class="input-group col-md-4 row"   ><input pattern="[0-9]*" class="form-control" placeholder="Giá từ" name="searchString2"><div >-</div><input pattern="[0-9]*"  class="form-control" placeholder="Giá đến" name="searchString3"></div>
+                <div class="col-md-2" >
+                    <select class="form-control" value="@ViewBag.SearchCat" style="" name="searchCat">
                         <option disabled selected value> Loại dược phẩm </option>
                         @foreach (var item in ViewBag.cat)
                         {
@@ -45,7 +45,7 @@
                         <li class="right-text">@(Convert.ToDouble(item.Price).ToString("C0", CultureInfo.CreateSpecificCulture("vi-VN")))</li>
                     </ul>
                     <div class="snipcart-details">
-                        <a href="/Shop/Add/@item.Id" class="w3l-cart">Add to cart</a>
+                        <a href="/Shop/Add/@item.Id" class="w3l-cart" style="font-size:12px">Thêm vào giỏ</a>
                     </div>
                     @*<div class="snipcart-details ">
                         <form action="#" method="post">

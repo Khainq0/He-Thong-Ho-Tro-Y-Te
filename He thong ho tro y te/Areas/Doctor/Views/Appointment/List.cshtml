@@ -7,32 +7,62 @@
 @using PagedList.Mvc
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<div class="box-body">
+<div class="box-body" style="margin-left:20px;margin-top:15px">
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Quản lý lịch hẹn</h3>
+
                 </div>
             </div>
             <!-- /search form -->
+            @using (Html.BeginForm("List", "Oder", FormMethod.Get))
+            {
+                <div class="row form-group">
+                    <div class="col-lg-12">
+                        <label class="col-lg-1 row">Từ khóa</label>
+                        <div class="col-md-3 row">
+                            <input type="text" value="@ViewBag.SearchString" class="form-control" name="searchString" />
+                        </div>
+                        <div class="col-md-1"></div>
+                        <label class="col-lg-1 row">Trạng thái</label>
+                        <div class="col-md-3">
+
+                            <select class="form-control" value="@ViewBag.SearchDuyet" style="margin-left:100px" name="searchDuyet">
+                                <option disabled selected value> Chọn </option>
+
+                                <option value="true">Đã duyệt</option>
+                                <option value="false">Chưa duyệt</option>
+
+
+                            </select>
+                        </div>
+
+
+                        <div class="col-md-3" style="text-align:right">
+                            <button type="submit" class="btn btn-success" style="width: 40%; float: right; margin: 2px 5px 0;">Tìm kiếm   <i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            }
+
             <!-- /.box-header -->
             <div class="box-body">
                 <table id="example2" class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>STT</th>
-                            <th>Tên khách hàng</th>
-                            <th>Giới tính</th>
-                            <th>Ngày sinh</th>
-                            <th>Địa chỉ</th>
-                            <th>Thư điện tử</th>
-                            <th>Số điện thoại</th>
-                            <th>Khoa khám</th>
-                        
-                            <th>Ngày hẹn</th>
-                            <th>Ghi chú</th>
-                            <th>Duyệt</th>
+                            <th style="text-align:center">STT</th>
+                            <th style="text-align:center">Tên khách hàng</th>
+                            <th style="text-align:center">Giới tính</th>
+                            <th style="text-align:center">Ngày sinh</th>
+                            <th style="text-align:center">Địa chỉ</th>
+                            <th style="text-align:center">Thư điện tử</th>
+                            <th style="text-align:center">Số điện thoại</th>
+                            <th style="text-align:center">Khoa khám</th>
+
+                            <th style="text-align:center">Ngày hẹn</th>
+                            <th style="text-align:center">Ghi chú</th>
+                            <th style="text-align:center">Duyệt</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,19 +70,19 @@
                         {
                             var item = Model.ElementAt(i);
                             <tr>
-                                <td>@(i+1)</td>
+                                <td style="text-align:center">@(i+1)</td>
                                 <td>@item.TenKH</td>
-                                <td>@item.GioiTinh</td>
+                                <td style="text-align:center">@item.GioiTinh</td>
                                 <td>@Convert.ToDateTime(item.NgaySinh).ToString("dd/MM/yyyy")</td>
                                 <td>@item.DiaChi</td>
                                 <td>@item.ThuDienTu</td>
-                                <td>@item.SoDienThoai</td>
+                                <td style="text-align:center">@item.SoDienThoai</td>
                                 <td>@item.KhoaKham</td>
-                                <td>@item.NgayHen</td>
+                                <td style="text-align:center">@item.NgayHen</td>
                                 <td>@item.GhiChu</td>
                                 @if (item.DaDuyet == true)
                                 {
-                                    <td>Đã duyệt</td>
+                                    <td style="text-align:center">Đã duyệt</td>
                                 }
                                 else
                                 {
@@ -68,13 +98,13 @@
                 <div class="col-sm-7">
                 </div>
             </div>
-            </div>
-            <!-- /.box-body -->
-
         </div>
-        <!-- /.box -->
-        <!-- /.box -->
+        <!-- /.box-body -->
+
     </div>
+    <!-- /.box -->
+    <!-- /.box -->
+</div>
     <!-- /.col -->
 
 

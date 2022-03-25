@@ -6,31 +6,35 @@ using System.Web.Mvc;
 using He_thong_ho_tro_y_te.Models.DAO;
 using He_thong_ho_tro_y_te.Models.DB;
 using System.IO;
+using He_thong_ho_tro_y_te.Common;
 
 namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
 {
     public class UserController : Controller
     {
         // GET: Admin/User
+        [HasPermission(RoleID = "DELETE_USER")]
         public ActionResult Delete(int id)
         {
             UserDAO dao = new UserDAO();
             dao.Delete(id);
             return Redirect("~/Admin/User/Index");
         }
+        [HasPermission(RoleID = "VIEW_USER")]
         public ActionResult Detail(int id)
         {
             var user = new UserDAO().Detail(id);
 
             return View(user);
         }
-
+        [HasPermission(RoleID = "ADD_USER")]
         public ActionResult Add()
         {
             List<UserGroup> ls = new List<UserGroup>();
             UserGroupDAO dao = new UserGroupDAO();
             return View(dao.ListGroup());
         }
+        [HasPermission(RoleID = "EDIT_USER")]
         public ActionResult Edit(int id)
         {
             List<UserGroup> ls = new List<UserGroup>();
@@ -42,6 +46,7 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [HasPermission(RoleID = "EDIT_USER")]
         public ActionResult Edit(int id, string groupid,  string name, string username, string password,string describe, HttpPostedFileBase image)
         {
             var img = Path.GetFileName(image.FileName);
@@ -73,6 +78,7 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [HasPermission(RoleID = "ADD_USER")]
         public ActionResult Add( string groupid, string name, string username, string password,string describe, HttpPostedFileBase image)
         {
             
@@ -113,7 +119,7 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
         //   return View(model);
         //}
 
-
+        [HasPermission(RoleID = "VIEW_USER")]
         public ActionResult Index(string searchString, int groupid = 0, int PageNum = 1, int PageSize = 5)
         {
             var dao = new UserDAO();
@@ -122,6 +128,12 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
             ViewBag.SearchString = searchString;
 
             return View(model);
+        }
+        [HttpGet]
+        public ActionResult Duyet(int id)
+        {
+            UserDAO.Duyet(id);
+            return RedirectToAction("Index");
         }
     }
 }

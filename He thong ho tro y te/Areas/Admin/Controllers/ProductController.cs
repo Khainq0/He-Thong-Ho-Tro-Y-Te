@@ -7,6 +7,7 @@ using He_thong_ho_tro_y_te.Models.DAO;
 using He_thong_ho_tro_y_te.Models.DB;
 using System.IO;
 using He_thong_ho_tro_y_te.Models.DTO;
+using He_thong_ho_tro_y_te.Common;
 
 namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
 {
@@ -14,7 +15,7 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
     {
 
         // GET: QLSanPham
-
+        [HasPermission(RoleID = "VIEW_USER")]
         public ActionResult Index(string searchString, string searchString2, string searchString3, string searchString4,string searchString5, string searchCat, int categoryID = 0, int PageNum = 1, int PageSize = 5)
         {
             // var dao = new ProductDAO();
@@ -32,8 +33,8 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
 
             return View(model);
         }
-        
 
+        [HasPermission(RoleID = "VIEW_USER")]
         public ActionResult Add()
         {
             List<Category> ls = new List<Category>();
@@ -41,6 +42,7 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
             return View(dao.ListCate());
         }
         [HttpPost]
+        [HasPermission(RoleID = "VIEW_USER")]
         public ActionResult Add(string idcategory, string describe, string name, string amount, string price, HttpPostedFileBase image)
         {
             var img = Path.GetFileName(image.FileName);
@@ -69,6 +71,7 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
                 return View(product);
             }
         }
+        [HasPermission(RoleID = "VIEW_USER")]
         public ActionResult Edit(int id)
         {
             List<Category> ls = new List<Category>();
@@ -80,6 +83,7 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [HasPermission(RoleID = "VIEW_USER")]
         public ActionResult Edit(int id, string idcategory, string describe, string name, string amount, string price, HttpPostedFileBase image)
         {
             var img = Path.GetFileName(image.FileName);
@@ -110,9 +114,9 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
             }
         }
 
-        
 
 
+        [HasPermission(RoleID = "VIEW_USER")]
         public ActionResult Detail(int id)
         {
             Product product = new ProductDAO().Detail(id);
@@ -162,6 +166,7 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
 
         //    return View(listLinks);
         //}
+        [HasPermission(RoleID = "DELETE_USER")]
         public ActionResult Delete(int id)
         {
             ProductDAO dao = new ProductDAO();

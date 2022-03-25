@@ -6,30 +6,34 @@ using System.Web.Mvc;
 using He_thong_ho_tro_y_te.Models.DAO;
 using He_thong_ho_tro_y_te.Models.DB;
 using System.IO;
+using He_thong_ho_tro_y_te.Common;
 
 namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
 {
     public class NewsController : Controller
     {
         // GET: Admin/News
+        [HasPermission(RoleID = "VIEW_USER")]
         public ActionResult Delete(int id)
         {
             NewsDAO dao = new NewsDAO();
             dao.Delete(id);
             return Redirect("~/Admin/News/Index");
         }
+        [HasPermission(RoleID = "VIEW_USER")]
         public ActionResult Detail(int id)
         {
             News product = new NewsDAO().Detail(id);
            
             return View(product);
         }
-
+        [HasPermission(RoleID = "VIEW_USER")]
         public ActionResult Add()
         {
             
             return View();
         }
+        [HasPermission(RoleID = "VIEW_USER")]
         public ActionResult Edit(int id)
         {
             
@@ -39,7 +43,7 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
             return View();
            
         }
-
+        [HasPermission(RoleID = "VIEW_USER")]
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Edit(int id, string name, string detail, HttpPostedFileBase image)
@@ -70,7 +74,7 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
                 return View(ne);
             }
         }
-
+        [HasPermission(RoleID = "VIEW_USER")]
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Add(string name, string detail, HttpPostedFileBase image)
@@ -104,7 +108,7 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
 
 
 
-
+        [HasPermission(RoleID = "VIEW_USER")]
         public ActionResult Index(string searchString,  int PageNum = 1, int PageSize = 5)
         {
             // var dao = new ProductDAO();

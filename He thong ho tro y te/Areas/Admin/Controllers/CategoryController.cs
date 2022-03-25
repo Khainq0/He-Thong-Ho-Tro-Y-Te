@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using He_thong_ho_tro_y_te.Common;
 using He_thong_ho_tro_y_te.Models.DAO;
 using He_thong_ho_tro_y_te.Models.DB;
 
@@ -11,7 +12,7 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
         // GET: Admin/Category
-
+        [HasPermission(RoleID = "VIEW_USER")]
         public ActionResult Index(string searchString, int PageNum = 1, int PageSize = 5)
         {
             // var dao = new ProductDAO();
@@ -29,6 +30,7 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
+        [HasPermission(RoleID = "VIEW_USER")]
         public ActionResult Add(string name)
         {
 
@@ -49,6 +51,7 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
                 return View(product);
             }
         }
+        [HasPermission(RoleID = "VIEW_USER")]
         public ActionResult Edit(int id)
         {
             List<Category> ls = new List<Category>();
@@ -59,6 +62,7 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
+        [HasPermission(RoleID = "VIEW_USER")]
         public ActionResult Edit(int id, string name)
         {
            
@@ -79,8 +83,8 @@ namespace He_thong_ho_tro_y_te.Areas.Admin.Controllers
                 return View(product);
             }
         }
-        
-        
+
+        [HasPermission(RoleID = "VIEW_USER")]
         public ActionResult Delete(int id)
         {
             

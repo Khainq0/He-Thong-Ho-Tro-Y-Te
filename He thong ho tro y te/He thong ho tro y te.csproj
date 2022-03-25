@@ -200,6 +200,9 @@
     <Compile Include="Areas\Doctor\DoctorAreaRegistration.cs" />
     <Compile Include="Areas\Patient\Controllers\BillController.cs" />
     <Compile Include="Areas\Patient\PatientAreaRegistration.cs" />
+    <Compile Include="Common\CommonConstants1.cs" />
+    <Compile Include="Common\HasPermissionAttribute.cs" />
+    <Compile Include="Common\UserLogin.cs" />
     <Compile Include="Controllers\HeChuyenGiaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
@@ -226,7 +229,9 @@
     <Compile Include="Models\DB\LichHen.cs" />
     <Compile Include="Models\DB\News.cs" />
     <Compile Include="Models\DB\Patient.cs" />
+    <Compile Include="Models\DB\Permission.cs" />
     <Compile Include="Models\DB\Product.cs" />
+    <Compile Include="Models\DB\Role.cs" />
     <Compile Include="Models\DB\User.cs" />
     <Compile Include="Models\DB\UserGroup.cs" />
     <Compile Include="Models\DB\YTeDbContext.cs" />
@@ -908,6 +913,7 @@
     <Content Include="Content\AdminLTE\dist\img\credit\visa.png" />
     <Content Include="Content\AdminLTE\dist\img\default-150x150.png" />
     <Content Include="Content\AdminLTE\dist\img\icons.png" />
+    <Content Include="Content\AdminLTE\dist\img\logoMTA.png" />
     <Content Include="Content\AdminLTE\dist\img\photo1.png" />
     <Content Include="Content\AdminLTE\dist\img\photo2.png" />
     <Content Include="Content\AdminLTE\dist\img\photo3.jpg" />
@@ -4699,6 +4705,7 @@
     <Content Include="Areas\Patient\Views\Bill\List.cshtml" />
     <Content Include="Areas\Admin\Views\User\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\Oder\ShowDetailOrder.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\Bug.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\ckeditor\ckeditor.php" />
     <Content Include="Scripts\ckeditor\ckeditor_basic.js" />
@@ -5113,6 +5120,12 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{C728FE69-13DE-4632-8074-699FAB632C6B}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

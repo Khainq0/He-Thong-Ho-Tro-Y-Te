@@ -25,6 +25,8 @@ namespace He_thong_ho_tro_y_te.Models.DB
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserGroup> UserGroups { get; set; }
         public virtual DbSet<LichHen> LichHens { get; set; }
+        public virtual DbSet<Permission> Permissions { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

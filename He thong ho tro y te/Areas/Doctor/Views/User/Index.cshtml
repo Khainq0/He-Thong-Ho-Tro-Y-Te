@@ -26,16 +26,17 @@
                     {
                         <div class="row form-group">
                             <div class="col-lg-12">
+                                <label class="col-lg-1 row">Từ khóa</label>
                                 <div class="col-md-4">
                                     <input type="text" value="@ViewBag.SearchString" class="form-control" name="searchString" />
-                                 </div>
+                                </div>
                                 <div class="col-md-4">
-                                    <button type="submit" class="btn btn-success">Tìm kiếm</button>
+                                    <button type="submit" class="btn btn-success">Tìm kiếm <i class="fas fa-search"></i></button>
                                 </div>
                             </div>
                         </div>
                     }
-                    <a href="~/Doctor/User/Add">Thêm mới  </a>
+                    <a href="~/Doctor/User/Add"  class="btn btn-primary" style="margin-bottom:10px">Thêm mới  </a>
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -56,31 +57,31 @@
                                 var item = Model.ElementAt(i);
                                 if (@item.GroupID == "PATIENT")
                                 {
-                                   
-                                        <tr>
-                                            <td>@(i + 1)</td>
-                                            <td>
-                                                @item.Name
-                                            </td>
-                                            <td>@item.UserName</td>
-                                            <td>@item.Password</td>
-                                            <td>@item.GroupID</td>
-                                            <td><img height="50px" src="~/Asset/Photo/@item.ModifiedBy" /></td>
-                                            <td>
-                                                <a href="~/Doctor/User/Edit/@item.ID">
-                                                    <span class="glyphicon glyphicon-edit"></span>
-                                                </a>
-                                                <a href="~/Doctor/User/Detail/@item.ID">
-                                                    <span class="glyphicon glyphicon-list"></span>
-                                                </a>
 
-                                                <a href="~/Doctor/User/Delete/@item.ID" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
-                                                    <span class="glyphicon glyphicon-trash"></span>
-                                                </a>
-                                            </td>
+                                    <tr>
+                                        <td>@(i + 1)</td>
+                                        <td>
+                                            @item.Name
+                                        </td>
+                                        <td>@item.UserName</td>
+                                        <td>@item.Password</td>
+                                        <td>@item.GroupID</td>
+                                        <td><img height="50px" src="~/Asset/Photo/@item.ModifiedBy" /></td>
+                                        <td>
+                                            <a href="~/Doctor/User/Edit/@item.ID">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </a>
+                                            <a href="~/Doctor/User/Detail/@item.ID">
+                                                <span class="glyphicon glyphicon-list"></span>
+                                            </a>
 
-                                        </tr>
-                                  
+                                            <a href="~/Doctor/User/Delete/@item.ID" onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </a>
+                                        </td>
+
+                                    </tr>
+
                                 }
 
                             }
